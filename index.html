@@ -9,9 +9,13 @@
 <div id="content"></div>
 
 <script>
-    const host = window.location.hostname;
+    // Read simulated hostname from URL parameter
+    const params = new URLSearchParams(window.location.search);
 
-    if (host.startsWith("www.")) {
+    // Use simulated hostname if supplied
+    const host = params.get("host") || window.location.hostname;
+
+    if (host.toLowerCase().startsWith("www.")) {
         document.getElementById("content").innerHTML =
             "<h1>Website Loaded Successfully!</h1>";
     } else {
